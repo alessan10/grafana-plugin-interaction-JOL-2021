@@ -1,0 +1,31 @@
+npm init -y
+yarn add -D typescript
+npx tsc --init
+src -> index.ts
+
+//***//
+transpile index.ts into js -> in package.json add script "build":"tsc"
+yarn build
+//***//
+
+per evitare di fare yarn build ogni volta:
+yarn add -D ts-node
+yarn start
+
+yarn add -D ts-node-dev (same as nodemon but nodemon is better!)
+yarn start
+
+yarn add nodemon
+add script "dev" into package.json
+
+yarn add express
+yarn add -D @types/express
+yarn add -D @types/node (to handle packages which we don't have info about)
+
+SOMETIMES you may need to run typescript restart server from command palette to fix errors
+
+yarn add -D body-parser
+yarn add -D mongoose
+yarn add -D @types/mongoose
+yarn add -D mongodb
+yarn add -D @types/mongodb
