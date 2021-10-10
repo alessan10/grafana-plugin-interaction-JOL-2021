@@ -1,45 +1,18 @@
-import * as mongodb from 'mongodb'
+import { MongoClient } from "mongodb"
 
-// export class MongoHelper{
-//     public static client: mongodb.MongoClient;
+const url = 'mongodb://127.0.0.1:27017'
+const dbname = 'jol'
+let db
 
-//     public static connect(url: string){
-//         return new Promise((resolve, reject) => {
-//             mongodb.MongoClient.connect(url, (err, client: mongodb.MongoClient) => {
-//                 if (err){
-//                     reject(err);
-//                 }else{
-//                     MongoHelper.client = client;
-//                 }
-//             });
-//         });
-//     }
-// }
+const dbConnectionResult = MongoClient.connect(url, (err, client) =>{
+    if (err) return console.log(err)
 
-const connection = mongodb.MongoClient.connect('mongodb://localhost:27017/jol', function(err, db){
-    if (err){
-        throw err;
-    }
-    // db.collection('temperatures').find().toArray(function(err, result) {
-    //     if (err) {
-    //         throw err;
-    //     }
-    // });
-    console.log(`connected to database ${db}`);
+    db = client?.db(dbname)
+    console.log(`Connected MongoDB: ${url}`)
+    console.log("Connected to DBname: ", db?.databaseName) //to be sure that DBname comes from the db and not from local variable
+    //console.log("client:",client)
+    //db?.createCollection('temperatures') //works fine but that's not its position!
+    // return db
 });
 
-export default connection
-
-// var MongoClient = require('mongodb').MongoClient;
-
-// MongoClient.connect('mongodb://localhost:27017/animals', function(err, db) {
-//   if (err) {
-//     throw err;
-//   }
-//   db.collection('mammals').find().toArray(function(err, result) {
-//     if (err) {
-//       throw err;
-//     }
-//     console.log(result);
-//   });
-// });
+export default dbConnectionResult
